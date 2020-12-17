@@ -3,8 +3,8 @@ on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     params:
-      lat: 51.509865
-      lon: -0.118092
+      lat: 51.189927
+      lon: 6.549787
       units: metric
     every: 0
 
