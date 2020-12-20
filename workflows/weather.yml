@@ -1,4 +1,4 @@
-Today maybe raining, temp: ${{on.weather.outputs.daily[0].temp.day}}°, ${{on.weather.outputs.daily[0].weather[0]description}}
+Today maybe raining, temp: ${{on.weather.outputs.current[0].temp}}°, ${{on.weather.outputs.daily[0].weather[0]description}}
 on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
@@ -16,6 +16,6 @@ jobs:
       - name: Print Outputs
         env:
           message: |
-            temp: ${{on.weather.outputs.daily[0].temp.day}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+            temp: ${{on.weather.outputs.current[0].temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
