@@ -1,7 +1,7 @@
 
 This is a workflow repository powered by [Actionsflow](https://github.com/actionsflow/actionsflow), generated from [actionsflow/actionsflow-workflow-default](https://github.com/actionsflow/actionsflow-workflow-default)
 
-Test
+Rainer 0.0.1
 
 # 🏁 Getting Started <a name = "getting_started"></a>
 
