@@ -6,7 +6,7 @@ on:
       lat: 51.189927
       lon: 6.549787
       units: metric
-    every: 0
+    every: "30 6 * * 1-5"
 
 jobs:
   print:
