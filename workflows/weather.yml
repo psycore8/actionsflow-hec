@@ -24,4 +24,4 @@ jobs:
         with:
           team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
           title: 'Rainers Wetterinfo'
-          message: temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+          message: 'temp: ' ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
