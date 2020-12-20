@@ -19,3 +19,9 @@ jobs:
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
+      - name: SIGNL4 Alerting
+      uses: signl4/signl4-action-alert@v1
+      with:
+       team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
+       title: 'Rainers Wetterinfo'
+       message: temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
