@@ -1,3 +1,20 @@
 on:
   youtube:
-    channel_id: ${{ secret.YT_CHANNEL_1 }}
+    channel_id: ${{ secrets.YT_CHANNEL_1 }}
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          message: |
+            temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+        run: |
+          echo message: $message
+      - name: SIGNL4 Alerting
+        uses: signl4/signl4-action-alert@v1
+        with:
+          team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
+          title: 'Neues Youtube Video Online'
+          message: ${{on.youtube.outputs.title}}, ${{on.youtube.outputs.link}}
