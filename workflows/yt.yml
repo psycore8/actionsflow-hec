@@ -1,3 +1,3 @@
 on:
   youtube:
-    channel_id:
+    channel_id: ${{ secret.YT_CHANNEL_1 }}
