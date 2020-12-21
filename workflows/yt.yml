@@ -9,7 +9,7 @@ jobs:
       - name: Print Outputs
         env:
           message: |
-            temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+            temp: ${{on.youtube.outputs.title}}, ${{on.youtube.outputs.link}}
         run: |
           echo message: $message
       - name: SIGNL4 Alerting
