@@ -7,7 +7,7 @@ on:
       lon: 6.549787
       units: metric
     every: "30 6 * * 1-5"
-    timeZone: "DE"
+    timeZone: Europe/Berlin
 
 jobs:
   print:
