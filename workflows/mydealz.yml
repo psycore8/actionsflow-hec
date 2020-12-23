@@ -31,4 +31,4 @@ jobs:
         with:
           team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
           title: 'MyDealz Alert'
-          message: title: ${{ on.rss.outputs.title }}, link: ${{ on.rss.outputs.link }}
+          message: '"title:" ${{ on.rss.outputs.title }}", link:" ${{ on.rss.outputs.link }}'
