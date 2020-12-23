@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://www.heckhausen.it/wallabag/web/PsyCore/9olr1D3Jz0hibCS/tags/covid-19.xml
+    url: ${{ secrets.MYDEALZ_RSS_URL }}
 jobs:
   print:
     name: Print
