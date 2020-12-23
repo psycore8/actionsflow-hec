@@ -1,7 +1,8 @@
 on:
   rss:
     url:
-      https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
+      - https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
+      - http://rss.filmstarts.de/fs/news/serien
     config:
       limit: 5
 jobs:
@@ -24,4 +25,4 @@ jobs:
         with:
           team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
           title: $title
-          message: '$contentSnippet " " $link'
+          message: $contentSnippet $link
