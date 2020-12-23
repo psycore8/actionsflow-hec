@@ -21,10 +21,6 @@ jobs:
           echo link: $link
           echo done
       - name: SIGNL4 Alerting
-         env:
-          title: 
-          contentSnippet: ${{on.rss.outputs.contentSnippet}}
-          link: ${{on.rss.outputs.link}}
         uses: signl4/signl4-action-alert@v1
         with:
           team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
