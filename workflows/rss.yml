@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://www.heckhausen.it/wallabag/web/PsyCore/9olr1D3Jz0hibCS/tags/test.xml
+    url: https://www.githubstatus.com/history.rss
 jobs:
   print:
     name: Print
