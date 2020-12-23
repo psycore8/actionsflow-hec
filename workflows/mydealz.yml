@@ -26,10 +26,10 @@ jobs:
         run: |
           echo title: $title
           echo link: $link
-      - name: Slack notification
-        uses: Ilshidur/action-slack@2.1.0
-        env:
-          title: ${{ on.rss.outputs.title }}
-          link: ${{ on.rss.outputs.link }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_RSS_DEALS }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "{{ title }}", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":moneybag: {{ title }}", "emoji": true } }, { "type": "section", "text": { "type": "mrkdwn", "text": "<{{ link }}|Click here to open>" } }, { "type": "divider" } ] }'
+ - name: SIGNL4 Alerting
+        uses: signl4/signl4-action-alert@v1
+        with:
+          team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
+          title: 'MyDealz Alert'
+          message: title: ${{ on.rss.outputs.title }}
+                   link: ${{ on.rss.outputs.link }}
