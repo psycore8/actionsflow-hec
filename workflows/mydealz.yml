@@ -9,10 +9,10 @@ on:
         title: 1
         link: 1
       #//format: |
-        // remove "
-        // max length for slack is 151, use 140 to have space for an emoji
-        //item.title = item.title.split('"').join("").substring(0, 140);
-        //return item;
+        #// remove "
+        #// max length for slack is 151, use 140 to have space for an emoji
+        #//item.title = item.title.split('"').join("").substring(0, 140);
+        #//return item;
 jobs:
   notify:
     name: Send notifications
