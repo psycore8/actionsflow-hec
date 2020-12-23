@@ -1,6 +1,8 @@
 on:
   rss:
-    url: ${{ secrets.MYDEALZ_RSS_URL }}
+    url:
+      - ${{ secrets.MYDEALZ_RSS_URL }}
+      - https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
     config:
       limit: 5
 jobs:
