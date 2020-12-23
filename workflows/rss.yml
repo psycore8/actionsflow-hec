@@ -1,6 +1,6 @@
 on:
   rss:
-    url: http://bestatterweblog.de/feed/
+    url: {{ secrets.MYDEALZ_RSS_URL }}
 jobs:
   print:
     name: Print
