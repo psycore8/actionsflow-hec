@@ -15,3 +15,4 @@ jobs:
           echo title: $title
           echo contentSnippet: $contentSnippet
           echo link: $link
+          echo done
