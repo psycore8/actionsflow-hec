@@ -1,6 +1,6 @@
 on:
   rss:
-    url: {{ secrets.MYDEALZ_RSS_URL }}
+    url: "https://www.mydealz.de/rssx/keyword-alarm/hri7Um2qg3YsPVKhdcmks6GY3YIqnm7wSbZbAo6AYzc."
 jobs:
   print:
     name: Print
