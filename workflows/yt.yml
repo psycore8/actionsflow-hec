@@ -1,6 +1,8 @@
 on:
   youtube:
     channel_id: ${{ secrets.YT_CHANNEL_1 }}
+    config:
+      limit: 2
 jobs:
   print:
     name: Print
