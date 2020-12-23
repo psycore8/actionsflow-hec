@@ -1,6 +1,8 @@
 on:
   rss:
     url: ${{ secrets.MYDEALZ_RSS_URL }}
+    config:
+      limit: 5
 jobs:
   print:
     name: Print
@@ -16,3 +18,10 @@ jobs:
           echo contentSnippet: $contentSnippet
           echo link: $link
           echo done
+      - name: SIGNL4 Alerting
+        uses: signl4/signl4-action-alert@v1
+        with:
+          team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
+          title: 'Rainers Wetterinfo'
+          message: Die aktuelle Teperatur beträgt ${{on.weather.outputs.current.temp}}°, der Tageshöchstwert wird bei ${{on.weather.outputs.daily[0].temp.day}}° liegen.
+                  ${{on.weather.outputs.daily[0].weather[0].description}}
