@@ -1,7 +1,8 @@
 on:
   rss:
     url:
-      - https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
+      #- https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
+      - http://www.spiegel.de/schlagzeilen/rss/0,5291,,00.xml
       - http://rss.filmstarts.de/fs/news/serien
     config:
       limit: 5
