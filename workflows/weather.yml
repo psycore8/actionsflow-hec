@@ -3,8 +3,8 @@ on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     params:
-      lat: 51.189927
-      lon: 6.549787
+      lat: ${{ secrets.LAT }}
+      lon: ${{ secrets.LON }}
       units: metric
     every: "30 6 * * 1-5"
     timeZone: Europe/Berlin
