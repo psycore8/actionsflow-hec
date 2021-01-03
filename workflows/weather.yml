@@ -6,8 +6,8 @@ on:
       lat: ${{ secrets.LAT }}
       lon: ${{ secrets.LON }}
       units: metric
-     #every: "30 6 * * 1-5"
-     #timeZone: Europe/Berlin
+     every: "30 6 * * 1-5"
+     timeZone: Europe/Berlin
 
 jobs:
   print:
@@ -20,12 +20,6 @@ jobs:
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
-      #- name: SIGNL4 Alerting
-       # uses: signl4/signl4-action-alert@v1
-       # with:
-       #   team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
-        #  title: ${{on.weather.outputs.daily[0].weather[0].description}}
-        #  message: Die aktuelle Teperatur beträgt ${{on.weather.outputs.current.temp}}°, der Tageshöchstwert wird bei ${{on.weather.outputs.daily[0].temp.day}}° liegen
       - name: Slack notification
         uses: Ilshidur/action-slack@2.1.0
         env:
