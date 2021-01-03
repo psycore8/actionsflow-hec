@@ -6,8 +6,8 @@ on:
       lat: ${{ secrets.LAT }}
       lon: ${{ secrets.LON }}
       units: metric
-     every: "30 6 * * 1-5"
-     timeZone: Europe/Berlin
+    every: "30 6 * * 1-5"
+    timeZone: Europe/Berlin
 
 jobs:
   print:
