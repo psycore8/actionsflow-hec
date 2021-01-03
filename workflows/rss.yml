@@ -3,7 +3,8 @@ on:
     url:
       #- https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
       - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
-      - http://rss.filmstarts.de/fs/news/serien
+      - https://taz.de/Themen-des-Tages/!p15;rss/
+      #- http://rss.filmstarts.de/fs/news/serien
     config:
       limit: 5
 jobs:
