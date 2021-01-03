@@ -1,0 +1,20 @@
+on:
+  email:
+    imap:
+      host: ${{ secrets.EMAIL_HOST }}
+      user: ${{secrets.EMAIL_USER}}
+      password: ${{secrets.EMAIL_PASS}}
+      tls: true
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          subject: ${{on.email.outputs.subject}}
+          text: ${{on.email.outputs.text}}
+        run: |
+          echo subject: $subject
+          echo text: $text
+          echo done
