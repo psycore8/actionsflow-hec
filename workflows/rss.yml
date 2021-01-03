@@ -1,7 +1,7 @@
 on:
   rss:
     url:
-      #- https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
+      - https://news.google.com/rss?pz=1&cf=all&hl=de&gl=DE&ceid=DE:de
       - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
       - https://taz.de/Themen-des-Tages/!p15;rss/
       #- http://rss.filmstarts.de/fs/news/serien
@@ -22,9 +22,16 @@ jobs:
           echo contentSnippet: $contentSnippet
           echo link: $link
           echo done
-      - name: SIGNL4 Alerting
-        uses: signl4/signl4-action-alert@v1
-        with:
-          team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
-          title: ${{on.rss.outputs.title}}
-          message: ${{on.rss.outputs.contentSnippet}} ${{on.rss.outputs.link}}
+      #- name: SIGNL4 Alerting
+       # uses: signl4/signl4-action-alert@v1
+       # with:
+       #   team-secret: ${{ secrets.SIGNL4_TEAM_SECRET }}
+       #   title: ${{on.rss.outputs.title}}
+       #   message: ${{on.rss.outputs.contentSnippet}} ${{on.rss.outputs.link}}
+      - name: Slack notification
+        uses: Ilshidur/action-slack@2.1.0
+        env:
+          #title: ${{ on.rss.outputs.title }}
+          #link: ${{ on.rss.outputs.link }}
+          #hostname: ${{ on.rss.outputs.hostname }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
