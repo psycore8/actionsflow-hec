@@ -6,8 +6,8 @@ on:
       lat: ${{ secrets.LAT }}
       lon: ${{ secrets.LON }}
       units: metric
-    #every: "30 6 * * 1-5"
-    #timeZone: Europe/Berlin
+     #every: "30 6 * * 1-5"
+     #timeZone: Europe/Berlin
 
 jobs:
   print:
@@ -31,5 +31,6 @@ jobs:
         env:
           curtemp: ${{on.weather.outputs.current.temp}}
           maxtemp: ${{on.weather.outputs.daily[0].temp.day}}
+          summary: ${{on.weather.outputs.daily[0].weather[0].description}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen" } }, { "type": "divider" } ] }'
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen" } }, { "type": "divider" } ] }'
