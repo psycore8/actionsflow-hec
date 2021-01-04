@@ -18,10 +18,10 @@ jobs:
           echo subject: $subject
           echo text: $text
           echo done
-      #- name: Slack notification
-        #uses: Ilshidur/action-slack@2.1.0
-        #env:
-          #subject: ${{on.email.outputs.subject}}
+      - name: Slack notification
+        uses: Ilshidur/action-slack@2.1.0
+        env:
+          subject: ${{on.email.outputs.subject}}
           #body: ${{on.email.outputs.text}}
-          #SLACK_WEBHOOK: ${{ secrets.SLACK_ENTERTAIN_BOT }}
-          #SLACK_CUSTOM_PAYLOAD: '{ "text": "NZB News {{ subject }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":dvd: NZB News {{ subject }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Body {{ body }} " } }, { "type": "divider" } ] }'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_ENTERTAIN_BOT }}
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "NZB News {{ subject }} "}'
