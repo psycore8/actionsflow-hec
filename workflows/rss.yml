@@ -8,7 +8,7 @@ on:
       - https://taz.de/Themen-des-Tages/!p15;rss/
       #- http://rss.filmstarts.de/fs/news/serien
     config:
-      limit: 10
+      #limit: 10
       filterOutputs:
         title: 1
         link: 1
