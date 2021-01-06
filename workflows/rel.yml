@@ -1,8 +1,8 @@
 on:
   poll:
-    #url: ${{ secrets.REL_JSON }}
-    url: https://api.github.com/users/redpeacock78/starred?page=1&per_page=20
-    #itemspath: data.rows
+    url: ${{ secrets.REL_JSON }}
+    #url: https://api.github.com/users/redpeacock78/starred?page=1&per_page=20
+    itemsPath: data.rows
     deduplicationKey: id
 jobs:
   print:
@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          oname: ${{ on.poll.outputs.title }}
+          oname: ${{ on.poll.outputs.name }}
         run: |
-          echo "rawBody: $name"
+          echo "rawBody: $oname"
