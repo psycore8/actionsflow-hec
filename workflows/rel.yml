@@ -2,7 +2,7 @@ on:
   poll:
     url: ${{ secrets.REL_JSON }}
     deduplicationKey: id
- jobs:
+jobs:
   print:
     name: Print
     runs-on: ubuntu-latest
