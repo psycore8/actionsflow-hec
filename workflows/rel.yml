@@ -1,7 +1,6 @@
 on:
   poll:
     url: ${{ secrets.REL_JSON }}
-    #url: https://api.github.com/users/redpeacock78/starred?page=1&per_page=20
     itemsPath: data.rows
     deduplicationKey: id
 jobs:
@@ -21,4 +20,4 @@ jobs:
           cat: ${{ on.poll.outputs.cat }}
           team: ${{ on.poll.outputs.team }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_REL_BOT }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "RELEASE","blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":lautsprecher: {{ name }}", "emoji": true } }, { "type": "section","text": { "type": "mrkdwn", "text": "{{cat}} von {{team}}" } },{ "type": "divider" } ] }'
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "RELEASE","blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":movie_camera: {{ name }}", "emoji": true } }, { "type": "section","text": { "type": "mrkdwn", "text": "@{{cat}} / {{team}}" } },{ "type": "divider" } ] }'
