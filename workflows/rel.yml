@@ -1,9 +1,9 @@
 on:
   poll:
-    #url: ${{ secrets.REL_JSON }}
-    url: https://jsonplaceholder.typicode.com/posts
+    url: ${{ secrets.REL_JSON }}
+    #url: https://jsonplaceholder.typicode.com/posts
     #itemspath: data.rows
-    deduplicationKey: id
+    deduplicationKey: data.rows.id
 jobs:
   print:
     name: Print
