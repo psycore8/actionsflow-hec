@@ -1,0 +1,14 @@
+on:
+  poll:
+    url: ${{ secrets.REL_JSON }}
+    deduplicationKey: id
+ jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          oname: ${{ on.poll.outputs.name }}
+        run: |
+          echo "rawBody: $name"
