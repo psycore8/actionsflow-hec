@@ -17,6 +17,6 @@ jobs:
       - name: Slack notification
         uses: Ilshidur/action-slack@2.1.0
         env:
-          bodytext: ${{ toJson(on.webhook.outputs.body.text) }}
+          bodytext: ${{ on.webhook.outputs.body.text }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_CHANNEL }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Ya man! {{ bodytext }} "}'
