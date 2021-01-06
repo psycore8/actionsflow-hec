@@ -22,4 +22,3 @@ jobs:
           team: ${{ on.poll.outputs.team }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_REL_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "RELEASE", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":lautsprecher: {{ name }}", "emoji": true } }, { "type": "section", "text": { "type": "mrkdwn", "text": "`{{ cat }}` - <{{ team }}|Click here to open>" } }, { "type": "divider" } ] }
-          
