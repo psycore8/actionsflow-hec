@@ -1,9 +1,9 @@
 on:
   poll:
-    url: ${{ secrets.REL_JSON }}
-    #url: https://jsonplaceholder.typicode.com/posts
-    itemspath: data.rows
-    deduplicationKey: data.rows.id
+    #url: ${{ secrets.REL_JSON }}
+    url: https://api.github.com/users/redpeacock78/starred?page=1&per_page=20
+    #itemspath: data.rows
+    deduplicationKey: id
 jobs:
   print:
     name: Print
@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          oname: ${{ on.poll.outputs.name }}
+          oname: ${{ on.poll.outputs.title }}
         run: |
           echo "rawBody: $name"
