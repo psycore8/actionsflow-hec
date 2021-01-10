@@ -16,7 +16,7 @@ jobs:
           echo body: $body 
       - name: Slack notification
         uses: Ilshidur/action-slack@2.1.0
-        #if: ${{ contains(${{ on.webhook.outputs.body.text }}, 'blubb') }}
+        if: ${{ contains(${{ on.webhook.outputs.body.text }}, 'blubb') }}
         env:
           bodytext: ${{ on.webhook.outputs.body.text }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_CHANNEL }}
