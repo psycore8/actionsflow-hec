@@ -20,4 +20,4 @@ jobs:
         env:
           bodytext: ${{ on.webhook.outputs.body.text }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_CHANNEL }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Ya man! {{ bodytext }} "}
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Ya man! {{ bodytext }} "}'
