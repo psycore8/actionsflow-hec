@@ -1,4 +1,4 @@
-on:
+  on:
   webhook:
 jobs:
   print:
@@ -13,10 +13,11 @@ jobs:
         run: |
           echo method: $method
           echo headers $headers
-          echo body: $body
+          echo body: $body 
       - name: Slack notification
         uses: Ilshidur/action-slack@2.1.0
+        if: ${{ contains(${{ on.webhook.outputs.body.text }}, 'blubb') }}
         env:
           bodytext: ${{ on.webhook.outputs.body.text }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_CHANNEL }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Ya man! {{ bodytext }} "}'
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Ya man! {{ bodytext }} "}
