@@ -5,8 +5,9 @@ on:
     params:
       lat: ${{ secrets.LAT }}
       lon: ${{ secrets.LON }}
+      lang: de
       units: metric
-    every: "30 6 * * 1-5"
+    #every: "30 6 * * 1-5"
     timeZone: Europe/Berlin
 
 jobs:
@@ -28,9 +29,15 @@ jobs:
           summary: ${{on.weather.outputs.daily[0].weather[0].description}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen" } }, { "type": "divider" } ] }'
-      - name: Slack notification daily
+      - name: Slack notification rain
         uses: Ilshidur/action-slack@2.1.0
         if: on.weather.outputs.current.weather == 'Rain'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Regen ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Du solltest den Regenschirm mitnehmen" } }, { "type": "divider" } ] }'
+      - name: Slack notification Clouds
+        uses: Ilshidur/action-slack@2.1.0
+        if: on.weather.outputs.current.weather == 'Clouds'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Grau, grau grau in grau" } }, { "type": "divider" } ] }'
