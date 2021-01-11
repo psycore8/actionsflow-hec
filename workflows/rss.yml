@@ -7,6 +7,10 @@ on:
       - https://taz.de/Themen-des-Tages/!p15;rss/
     config:
       #limit: 10
+      filter:
+        content_tier:
+          $not:
+            locked
       filterOutputs:
         title: 1
         link: 1
