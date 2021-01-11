@@ -31,13 +31,13 @@ jobs:
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen" } }, { "type": "divider" } ] }'
       - name: Slack notification rain
         uses: Ilshidur/action-slack@2.1.0
-        if: on.weather.outputs.current.weather == 'Rain'
+        if: on.weather.outputs.current.weather.main == 'Rain'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Regen ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Du solltest den Regenschirm mitnehmen" } }, { "type": "divider" } ] }'
       - name: Slack notification Clouds
         uses: Ilshidur/action-slack@2.1.0
-        if: on.weather.outputs.current.weather == 'Clouds'
+        if: on.weather.outputs.current.weather.main == 'Clouds'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Grau, grau grau in grau" } }, { "type": "divider" } ] }'
