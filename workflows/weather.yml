@@ -7,7 +7,7 @@ on:
       lon: ${{ secrets.LON }}
       lang: de
       units: metric
-    every: "30 6 * * 1-5"
+    #every: "30 6 * * 1-5"
     timeZone: Europe/Berlin
 
 jobs:
@@ -40,4 +40,10 @@ jobs:
         if: on.weather.outputs.daily[0].weather[0].description == 'Bedeckt'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Grau, grau grau in grau" } }, { "type": "divider" } ] }'
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Grau in grau und keine Sonne in Sicht" } }, { "type": "divider" } ] }'
+      - name: Slack notification Clouds_behind_sun
+        uses: Ilshidur/action-slack@2.1.0
+        if: on.weather.outputs.daily[0].weather[0].description == 'Überwiegend bewölkt'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
