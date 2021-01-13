@@ -14,6 +14,7 @@ on:
       filterOutputs:
         title: 1
         link: 1
+        content_tier: 1
       format: |
         item.hostname = new URL(item.link).hostname;
         item.title = item.title.split('"').join("").substring(0, 140);
@@ -26,13 +27,13 @@ jobs:
       - name: Print Outputs
         env:
           title: ${{on.rss.outputs.title}}
-          contentSnippet: ${{on.rss.outputs.contentSnippet}}
+          #contentSnippet: ${{on.rss.outputs.contentSnippet}}
           link: ${{on.rss.outputs.link}}
           #debug
           ct: ${{ on.rss.outputs.content_tier }}
         run: |
           echo title: $title
-          echo contentSnippet: $contentSnippet
+          #echo contentSnippet: $contentSnippet
           echo link: $link
           echo Content: $ct
           echo done
