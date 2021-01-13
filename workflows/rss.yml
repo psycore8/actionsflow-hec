@@ -34,6 +34,7 @@ jobs:
           echo title: $title
           echo contentSnippet: $contentSnippet
           echo link: $link
+          echo Content: $ct
           echo done
       - name: Slack notification
         uses: Ilshidur/action-slack@2.1.0
