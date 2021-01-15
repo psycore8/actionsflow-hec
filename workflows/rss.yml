@@ -7,14 +7,14 @@ on:
       - https://taz.de/Themen-des-Tages/!p15;rss/
     config:
       #limit: 10
-      filter:
-        content_tier:
-          $not:
-            locked
       filterOutputs:
         title: 1
         link: 1
         content_tier: 1
+      filter:
+        content_tier:
+          $not:
+            locked
       format: |
         item.hostname = new URL(item.link).hostname;
         item.title = item.title.split('"').join("").substring(0, 140);
