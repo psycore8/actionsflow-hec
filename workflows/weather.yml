@@ -18,10 +18,10 @@ jobs:
       - name: Print Outputs
         id: collect_data
         env:
-          message: |
-            temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
           sunrise: ${{on.weather.outputs.current.sunrise}}
           sunset: ${{on.weather.outputs.current.sunset}}
+          message: |
+            temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
           conv_sunrise=$(date -d @${sunrise})
