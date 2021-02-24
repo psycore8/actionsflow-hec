@@ -7,7 +7,7 @@ on:
       lon: ${{ secrets.LON }}
       lang: de
       units: metric
-    every: "30 6 * * 1-5"
+    #every: "30 6 * * 1-5"
     timeZone: Europe/Berlin
 
 jobs:
@@ -16,17 +16,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Outputs
+        id: collect_data
         env:
           message: |
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
+            sunrise: ${{on.weather.outputs.current.sunrise}}
+            sunset: ${{on.weather.outputs.current.sunset}}
         run: |
           echo message: $message
+          conv_sunrise=$(date -d @${sunrise})
+          conv_sunset=$(date -d @${sunset})
+          echo sunrise: $sunrise
+          echo sunset: $sunset
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
         env:
           curtemp: ${{on.weather.outputs.current.temp}}
           maxtemp: ${{on.weather.outputs.daily[0].temp.day}}
           summary: ${{on.weather.outputs.daily[0].weather[0].description}}
+          sunrise: ${{steps.collect_data.outputs.sunrise}}
+          sunset: ${{steps.collect_data.outputs.sunset}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }} ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen" } }, { "type": "divider" } ] }'
       - name: Slack notification rain
