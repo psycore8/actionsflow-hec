@@ -26,8 +26,8 @@ jobs:
           echo message: $message
           conv_sunrise=$(date -d @${sunrise})
           conv_sunset=$(date -d @${sunset})
-          echo conv_sunrise: $sunrise
-          echo conv_sunset: $sunset
+          echo conv_sunrise: $conv_sunrise
+          echo conv_sunset: $conv_sunset
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
         env:
