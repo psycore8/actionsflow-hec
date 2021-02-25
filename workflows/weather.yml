@@ -34,11 +34,11 @@ jobs:
           curtemp: ${{on.weather.outputs.current.temp}}
           maxtemp: ${{on.weather.outputs.daily[0].temp.day}}
           summary: ${{on.weather.outputs.daily[0].weather[0].description}}
+          slacksunrise: ${{steps.collect_data.outputs.conv_sunrise}}
+          slacksunset: ${{steps.collect_data.outputs.conv_sunset}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }}", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen {{slacksunrise}} {{slacksunset}}" } }, { "type": "divider" } ] }'
         with:
-          slacksunrise: ${{steps.collect_data.outputs.conv_sunrise}}
-          slacksunset: ${{steps.collect_data.outputs.conv_sunset}}
           args: "Wetterinfo:\n
                 Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen\n
                 Sonnenaufgang: {{ slacksunrise }}\n
