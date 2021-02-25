@@ -16,10 +16,6 @@ jobs:
     name: Print
     runs-on: ubuntu-latest
     steps:
-      - name: Set TimeZone
-        uses: zcong1993/setup-timezone@master
-        with:
-          timezone: Europe/Berlin
       - name: Print Outputs
         id: collect_data
         env:
