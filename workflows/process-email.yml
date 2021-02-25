@@ -23,5 +23,5 @@ jobs:
         env:
           subject: ${{on.email.outputs.subject}}
           #body: ${{on.email.outputs.text}}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_ENTERTAIN_BOT }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "NZB News {{ subject }} "}'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_NETWORK }}
+          SLACK_CUSTOM_PAYLOAD: '{ "text": "Neue Nachricht auf deiner fritz.box {{ subject }} "}'
