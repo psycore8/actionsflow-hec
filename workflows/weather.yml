@@ -27,6 +27,7 @@ jobs:
           echo message: $message
           conv_sunrise=$(date +%H:%M --date='TZ="CET" @'${sunrise})
           conv_sunset=$(date +%H:%M --date='TZ="CET" @'${sunset})
+          echo "date +%Z"
           echo "::set-output name=conv_sunrise::${conv_sunrise}"
           echo "::set-output name=conv_sunset::${conv_sunset}"
       - name: Slack notification daily
