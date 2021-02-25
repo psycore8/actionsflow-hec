@@ -40,7 +40,12 @@ jobs:
           slacksunrise: ${{steps.collect_data.outputs.conv_sunrise}}
           slacksunset: ${{steps.collect_data.outputs.conv_sunset}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }}", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen {{slacksunrise}} {{slacksunset}}" } }, { "type": "divider" } ] }'
+          #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wetterinfo {{ summary }} ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":thermometer: Wetterinfo {{ summary }}", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": " Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen {{slacksunrise}} {{slacksunset}}" } }, { "type": "divider" } ] }'
+        with:
+          args: 'Wetterinfo:'
+          args: 'Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen'
+          args: 'Sonnenaufgang: {{slacksunrise}}'
+          args: 'Sonnenuntergang: {{slacksunset}}'
       - name: Slack notification rain
         uses: Ilshidur/action-slack@2.1.0
         if: on.weather.outputs.daily[0].weather[0].main == 'Rain'
