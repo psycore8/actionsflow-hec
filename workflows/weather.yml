@@ -7,7 +7,7 @@ on:
       lon: ${{ secrets.LON }}
       lang: de
       units: metric
-    every: "30 6 * * 1-5"
+    #every: "30 6 * * 1-5"
     timeZone: Europe/Berlin
 
 jobs:
@@ -25,10 +25,10 @@ jobs:
         run: |
           echo message: $message
           # check syntax
-          #conv_sunrise=$(date +%H%M --date='TZ="Europe/Berlin" @${sunrise}')
-          #conv_sunset=$(date +%H%M --date='TZ="Europe/Berlin" @${sunset}')
-          conv_sunrise=$(date -d @${sunrise})
-          conv_sunset=$(date -d @${sunset})
+          conv_sunrise=$(date +%H%M --date='TZ="Europe/Berlin" @'${sunrise})
+          conv_sunset=$(date +%H%M --date='TZ="Europe/Berlin" @'${sunset})
+          #conv_sunrise=$(date -d @${sunrise})
+          #conv_sunset=$(date -d @${sunset})
           echo conv_sunrise: $conv_sunrise
           echo conv_sunset: $conv_sunset
       - name: Slack notification daily
