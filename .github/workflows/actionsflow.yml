@@ -11,6 +11,10 @@ jobs:
     name: Run
     steps:
       - uses: actions/checkout@v2
+      - name: Set TimeZone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Europe/Berlin
       - name: Run Actionsflow
         uses: actionsflow/actionsflow-action@v1
         with:
