@@ -28,6 +28,8 @@ jobs:
           conv_sunset=$(date +%H:%M --date='TZ="CET" @'${sunset})
           echo conv_sunrise: $conv_sunrise
           echo conv_sunset: $conv_sunset
+          echo "::set-output name=conv_sunrise::${conv_sunrise}"
+          echo "::set-output name=conv_sunset::${conv_sunset}"
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
         env:
