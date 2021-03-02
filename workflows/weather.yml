@@ -35,10 +35,10 @@ jobs:
           echo "::set-output name=conv_sunset::${conv_sunset}"
           if [${alerts_active} != ""]
           then
-            conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
-            conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
-            echo "::set-output name=conv_sunrise::${conv_alert_start}"
-            echo "::set-output name=conv_sunset::${conv_alert_end}"
+            #conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
+            #conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
+            #echo "::set-output name=conv_sunrise::${conv_alert_start}"
+            #echo "::set-output name=conv_sunset::${conv_alert_end}"
           fi
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
