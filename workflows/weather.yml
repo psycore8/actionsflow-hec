@@ -33,7 +33,7 @@ jobs:
           echo $(date +%Z)
           echo "::set-output name=conv_sunrise::${conv_sunrise}"
           echo "::set-output name=conv_sunset::${conv_sunset}"
-          if [${alerts_active ! ""}]
+          if [${alerts_active} ! ""]
           then
             conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
             conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
