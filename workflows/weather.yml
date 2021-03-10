@@ -18,14 +18,13 @@ jobs:
     steps:
       - name: Print Outputs
         continue-on-error: true
-        if: ${{on.weather.outputs.alerts[0].description}} != Null
         id: collect_data
         env:
           sunrise: ${{on.weather.outputs.current.sunrise}}
           sunset: ${{on.weather.outputs.current.sunset}}
-          alert_active: ${{on.weather.outputs.alerts[0].description}}
-          alert_start: ${{on.weather.outputs.alerts[0].start}}
-          alert_end: ${{on.weather.outputs.alerts[0].end}}
+          alert_active: ${{fromJSON(on.weather.outputs.alerts[0].description)}}
+          alert_start: ${{fromJSON(on.weather.outputs.alerts[0].start)}}
+          alert_end: ${{fromJSON(on.weather.outputs.alerts[0].end)}}
           message: |
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
