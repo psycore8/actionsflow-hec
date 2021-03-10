@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: Print Outputs
         continue-on-error: true
+        if: ${{on.weather.outputs.alerts[0].description}}
         id: collect_data
         env:
           sunrise: ${{on.weather.outputs.current.sunrise}}
@@ -40,8 +41,9 @@ jobs:
           then
             conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
             conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
-            echo "::set-output name=conv_sunrise::${conv_alert_start}"
-            echo "::set-output name=conv_sunset::${conv_alert_end}"
+            echo "::set-output name=alert_active::${alert_active}"
+            echo "::set-output name=conv_alert_start::${conv_alert_start}"
+            echo "::set-output name=conv_alert_end::${conv_alert_end}"
           fi
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
