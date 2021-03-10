@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: Print Outputs
         continue-on-error: true
-        if: ${{on.weather.outputs.alerts}}
         id: collect_data
         env:
           sunrise: ${{on.weather.outputs.current.sunrise}}
