@@ -8,7 +8,7 @@ on:
       lang: de
       units: metric
     config:
-      #every: "30 6 * * 1-5"
+      every: "30 6 * * 1-5"
       timeZone: Europe/Berlin
 
 jobs:
