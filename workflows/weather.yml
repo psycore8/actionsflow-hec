@@ -17,30 +17,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Outputs
+        continue-on-error: true
         id: collect_data
         env:
           sunrise: ${{on.weather.outputs.current.sunrise}}
           sunset: ${{on.weather.outputs.current.sunset}}
-          #alert_active: ${{on.weather.outputs.alerts[0].description}}
-          #alert_start: ${{on.weather.outputs.alerts[0].start}}
-          #alert_end: ${{on.weather.outputs.alerts[0].end}}
+          alert_active: ${{on.weather.outputs.alerts[0].description}}
+          alert_start: ${{on.weather.outputs.alerts[0].start}}
+          alert_end: ${{on.weather.outputs.alerts[0].end}}
           message: |
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
+          echo $alert_active 
           conv_sunrise=$(date +%H:%M --date='TZ="CET" @'${sunrise})
           conv_sunset=$(date +%H:%M --date='TZ="CET" @'${sunset})
           echo $(date +%Z)
           echo "::set-output name=conv_sunrise::${conv_sunrise}"
           echo "::set-output name=conv_sunset::${conv_sunset}"
      
-          #if [${alerts_active} != ""]
-          #then
-            #conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
-            #conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
-            #echo "::set-output name=conv_sunrise::${conv_alert_start}"
-            #echo "::set-output name=conv_sunset::${conv_alert_end}"
-          #fi
+          if [${alerts_active} != ""]
+          then
+            conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
+            conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
+            echo "::set-output name=alert_active::${alert_active}"
+            echo "::set-output name=conv_alert_start::${conv_alert_start}"
+            echo "::set-output name=conv_alert_end::${conv_alert_end}"
+          fi
       - name: Slack notification daily
         uses: Ilshidur/action-slack@2.1.0
         env:
@@ -74,18 +77,18 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
-      - name: Slack notification alert
+      - name: Slack Alert
         uses: Ilshidur/action-slack@2.1.0
-        if: on.weather.outputs.alerts[0].description != ''
+        if: ${{ on.weather.outputs.alerts[0].description != '' }}
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
-          #alert_start: ${{steps.collect_data.outputs.conv_alert_start}}
-          #alert_end: ${{steps.collect_data.outputs.conv_alert_end}}
-          #alert_desc: ${{on.weather.outputs.alerts[0].description}}
+          alert_start: ${{steps.collect_data.outputs.conv_alert_start}}
+          alert_end: ${{steps.collect_data.outputs.conv_alert_end}}
+          alert_desc: ${{steps.collect_data.outputs.alert_active}}
           #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
         with:
           args:
-            "ALARM!\n
+            ":bangbang: ALARM :bangbang:\n
             {{ alert_desc }}\n
             Gültig von {{ alert_start }} bis {{alert_end }}\n"
           
