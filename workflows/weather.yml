@@ -79,7 +79,7 @@ jobs:
           SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
       - name: Slack Alert
         uses: Ilshidur/action-slack@2.1.0
-        #if: ${{ on.weather.outputs.alerts[0].description != '' }}
+        if: ${{ on.weather.outputs.alerts[0].description != '' }}
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           alert_start: ${{steps.collect_data.outputs.conv_alert_start}}
