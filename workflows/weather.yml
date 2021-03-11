@@ -88,7 +88,7 @@ jobs:
           #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
         with:
           args:
-            ":bangbang: ALARM!\n
+            ":bangbang: ALARM :bangbang:\n
             {{ alert_desc }}\n
             Gültig von {{ alert_start }} bis {{alert_end }}\n"
           
