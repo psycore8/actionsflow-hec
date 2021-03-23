@@ -8,7 +8,7 @@ on:
       lang: de
       units: metric
     config:
-      every: "30 6 * * 1-5"
+      #every: "30 6 * * 1-5"
       timeZone: Europe/Berlin
 
 jobs:
@@ -26,7 +26,6 @@ jobs:
             temp: ${{on.weather.outputs.current.temp}}°, ${{on.weather.outputs.daily[0].weather[0].description}}
         run: |
           echo message: $message
-          echo $alert_active 
           conv_sunrise=$(date +%H:%M --date='TZ="CET" @'${sunrise})
           conv_sunset=$(date +%H:%M --date='TZ="CET" @'${sunset})
           echo $(date +%Z)
