@@ -33,6 +33,7 @@ jobs:
             echo "::set-output name=conv_alert_end::${conv_alert_end}"
           fi
       - name: Slack Alert
+        continue-on-error: true
         uses: Ilshidur/action-slack@2.1.0
         if: ${{ on.weather.outputs.alerts[0].description != '' }}
         env:
