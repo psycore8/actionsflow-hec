@@ -7,7 +7,7 @@ on:
       lang: de
       units: metric
     config:
-      every: "* 6-23/6 * * 1-5"
+      every: "0 6-23/6 * * 1-5"
       timeZone: Europe/Berlin
 
 jobs:
@@ -23,8 +23,8 @@ jobs:
           alert_start: ${{on.weather.outputs.alerts[0].start}}
           alert_end: ${{on.weather.outputs.alerts[0].end}}
         run: |
-          echo $alert_active 
-          if [${alerts_active} != ""]
+          echo Alarmstatus: $alert_active 
+          if [${alerts_active} != false]
           then
             conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
             conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
@@ -33,6 +33,7 @@ jobs:
             echo "::set-output name=conv_alert_end::${conv_alert_end}"
           fi
       - name: Slack Alert
+        continue-on-error: true
         uses: Ilshidur/action-slack@2.1.0
         if: ${{ on.weather.outputs.alerts[0].description != '' }}
         env:
