@@ -24,7 +24,7 @@ jobs:
           alert_end: ${{on.weather.outputs.alerts[0].end}}
         run: |
           echo Alarmstatus: $alert_active 
-          if [ "${alerts_active}" == true ]
+          if [ "${alert_active}" == true ]
           then
             echo convert dates and export variables
             conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
