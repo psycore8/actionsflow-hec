@@ -24,15 +24,15 @@ jobs:
           alert_end: ${{on.weather.outputs.alerts[0].end}}
         run: |
           echo Alarmstatus: $alert_active 
-          #if [${alerts_active} == true]
-          #then
+          if ${alerts_active} != false
+          then
             echo convert dates and export variables
             conv_alert_start=$(date +%H:%M --date='TZ="CET" @'${alert_start})
             conv_alert_end=$(date +%H:%M --date='TZ="CET" @'${alert_end})
             echo "::set-output name=conv_alert_active::${alert_active}"
             echo "::set-output name=conv_alert_start::${conv_alert_start}"
             echo "::set-output name=conv_alert_end::${conv_alert_end}"
-          #fi
+          fi
       - name: Slack Alert
         continue-on-error: true
         uses: Ilshidur/action-slack@2.1.0
@@ -41,7 +41,7 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           alert_start: ${{steps.collect_data.outputs.conv_alert_start}}
           alert_end: ${{steps.collect_data.outputs.conv_alert_end}}
-          alert_desc: ${{steps.collect_data.outputs.alert_active}}
+          alert_desc: ${{steps.collect_data.outputs.conv_alert_active}}
           #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
         with:
           args:
