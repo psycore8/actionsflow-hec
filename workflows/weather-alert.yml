@@ -2,12 +2,12 @@ on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
     params:
-      lat: 43.747530 #${{ secrets.LAT }}
-      lon: 11.371812 #${{ secrets.LON }}
+      lat: ${{ secrets.LAT }}
+      lon: ${{ secrets.LON }}
       lang: de
       units: metric
     config:
-      #every: "0 6-23/6 * * 1-5"
+      every: "0 6-23/6 * * 1-5"
       timeZone: Europe/Berlin
 
 jobs:
