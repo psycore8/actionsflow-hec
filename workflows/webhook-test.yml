@@ -11,6 +11,8 @@ jobs:
           body: ${{ toJson(on.webhook.outputs.body) }}
           headers: ${{ toJson(on.webhook.outputs.headers) }}
         run: |
+          wget https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html
+          cat Fallzahlen.html
           echo method: $method
           echo headers $headers
           echo body: $body 
