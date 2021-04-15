@@ -1,0 +1,28 @@
+on:
+  poll:
+    url: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=1%3D1&outFields=AdmUnitId,AnzTodesfall,AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json
+    deduplicationKey: AdmUnitId
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          oname: ${{ on.poll.outputs.AnzFallNeu }}
+        run: |
+          echo "rawBody: $oname"
+      - name: Slack notification
+        uses: Ilshidur/action-slack@2.1.0
+        env:
+          AnzFallNeu: ${{ on.poll.outputs.AnzFallNeu }}
+          AnzTodesfallNeu: ${{ on.poll.outputs.AnzTodesfallNeu }}
+          Inz7T: ${{ on.poll.outputs.Inz7T }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_NEWS_BOT }}
+          #SLACK_CUSTOM_PAYLOAD: '{ "text": "RELEASE","blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":movie_camera: {{ name }}", "emoji": true } }, { "type": "section","text": { "type": "mrkdwn", "text": "@{{cat}} / {{team}}" } },{ "type": "divider" } ] }'
+        with:
+          args:
+            "Neuinfektionen: {{AnzFallNeu}}\n
+             Todesfälle 24h: {{AnzTodesfallNeu}}\n
+             7 Tage Inzidenz: {{Inz7T}}\n
+            \n"
