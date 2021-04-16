@@ -22,6 +22,7 @@ jobs:
       - name: Slack Alert
         uses: Ilshidur/action-slack@2.1.0
         env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_NEWS_BOT }}
           AnzFallNeu: ${{ on.script.outputs.attributes.AnzFallNeu }}
           AnzTodesfallNeu: ${{ on.script.outputs.attributes.AnzTodefallNeu }}
           Inz7T: ${{ on.script.outputs.attributes.Inz7T }}
