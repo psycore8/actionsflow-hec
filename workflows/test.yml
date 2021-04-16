@@ -16,6 +16,6 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          outputs: ${{ on.script.outputs }}
+          outputs: ${{ toJson(on.script.outputs) }}
         run: |
           echo outputs: $outputs
