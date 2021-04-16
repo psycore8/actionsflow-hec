@@ -1,0 +1,35 @@
+on:
+  script:
+    config:
+      force: true
+      every: "30 6 * * *"
+      #skipSchedule: true
+      #manualRunEvent:
+       # - workflow_dispatch
+       # - push
+    run: |
+      const result = await helpers.axios.get("https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=ObjectId%20%3E%3D%200%20AND%20ObjectId%20%3C%3D%202%20AND%20AdmUnitId%20%3E%3D%200%20AND%20AdmUnitId%20%3C%3D%201&outFields=AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json")
+      return result.data.features
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          outputs: ${{ toJson(on.script.outputs) }}
+        run: |
+          echo outputs: $outputs
+      - name: Slack Alert
+        uses: Ilshidur/action-slack@2.1.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_NEWS_BOT }}
+          AnzFallNeu: ${{ on.script.outputs.attributes.AnzFallNeu }}
+          AnzTodesfallNeu: ${{ on.script.outputs.attributes.AnzTodesfallNeu }}
+          Inz7T: ${{ on.script.outputs.attributes.Inz7T }}
+        with:
+          args:
+            ":large_blue_circle: COVID-19 Zahlen :large_blue_circle:\n
+            Anzahl Neuinfektionen: {{ AnzFallNeu }}\n
+            Anzahl Todesfälle 24h: {{ AnzTodesfallNeu }}\n
+            7 Tage Inzidenz: {{ Inz7T }}\n"
