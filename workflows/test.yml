@@ -8,7 +8,7 @@ on:
         - push
     run: |
       const result = await helpers.axios.get("https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=1%3D1&outFields=AdmUnitId,AnzTodesfall,AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json")
-      return result.features.attributes
+      return result.features
 jobs:
   print:
     name: Print
@@ -16,6 +16,6 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          outputs: ${{ toJson(on.script.outputs) }}
+          outputs: ${{ toJson(on.script.outputs.attributes) }}
         run: |
           echo outputs: $outputs
