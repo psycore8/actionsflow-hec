@@ -11,17 +11,24 @@ on:
       return result.data.features
 jobs:
   print:
-    name: Print
+    - name: Print
     runs-on: ubuntu-latest
     steps:
       - name: Print Outputs
         env:
           outputs: ${{ toJson(on.script.outputs) }}
-          outputs2: ${{ on.script.outputs }}
-          FallNeu: ${{ on.script.outputs.AnzFallNeu }}
-          FallNeu2: ${{ on.script.outputs.attributes.AnzFallNeu }}
         run: |
           echo outputs: $outputs
-          echo outputs2: $outputs2
-          echo Neue Fälle: $FallNeu
-          echo Neue Fälle: $FallNeu2
+      - name: Slack Alert
+        uses: Ilshidur/action-slack@2.1.0
+        env:
+          AnzFallNeu: ${{ on.script.outputs.attributes.AnzFallNeu }}
+          AnzTodesfallNeu: ${{ on.script.outputs.attributes.AnzTodefallNeu }}
+          Inz7T: ${{ on.script.outputs.attributes.Inz7T }}
+        with:
+          args:
+            ":large_blue_circle: COVID-19 Zahlen :large_blue_circle:\n
+            Anzahl Neuinfektionen: {{ AnzFallNeu }}\n
+            Anzahl Todesfälle 24h: {{ AnzTodesfallNeu }}\n
+            7 Tage Inzidenz: {{ Inz7T }}\n
+            "
