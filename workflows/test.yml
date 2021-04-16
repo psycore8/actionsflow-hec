@@ -17,7 +17,7 @@ jobs:
       - name: Print Outputs
         env:
           outputs: ${{ toJson(on.script.outputs) }}
-          FallNeu: ${{ on.script.outputs.atttributes.AnzFallNeu }}
+          FallNeu: ${{ on.script.outputs.AnzFallNeu }}
         run: |
           echo outputs: $outputs
           echo Neue Fälle: $FallNeu
