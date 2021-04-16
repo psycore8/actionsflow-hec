@@ -11,7 +11,7 @@ on:
       return result.data.features
 jobs:
   print:
-    - name: Print
+    name: Print
     runs-on: ubuntu-latest
     steps:
       - name: Print Outputs
