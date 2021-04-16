@@ -1,7 +1,7 @@
 #get daily COVID-19 cases for germany 
 on:
   poll:
-    url: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=1%3D1&outFields=AdmUnitId,AnzTodesfall,AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json
+    url: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=ObjectId%20%3E%3D%200%20AND%20ObjectId%20%3C%3D%202%20AND%20AdmUnitId%20%3E%3D%200%20AND%20AdmUnitId%20%3C%3D%201&outFields=AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json
     itemsPath: features
     deduplicationKey: ObjectId
     config:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          oname: ${{ on.poll.outputs.AnzFallNeu }}
+          oname: ${{ on.poll.outputs.attributes.AnzFallNeu }}
         run: |
           echo "rawBody: $oname"
       - name: Slack notification
