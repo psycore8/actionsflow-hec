@@ -2,13 +2,13 @@ on:
   script:
     config:
       #force: true
-      every: "30 6 * * *"
+      #every: "30 6 * * *"
       #skipSchedule: true
       #manualRunEvent:
        # - workflow_dispatch
        # - push
     run: |
-      const result = await helpers.axios.get("https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=ObjectId%20%3E%3D%200%20AND%20ObjectId%20%3C%3D%202%20AND%20AdmUnitId%20%3E%3D%200%20AND%20AdmUnitId%20%3C%3D%201&outFields=AnzFallNeu,AnzTodesfallNeu,AnzFall7T,Inz7T,ObjectId&outSR=4326&f=json")
+      const result = await helpers.axios.get("https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=ObjectId%20%3E%3D%200%20AND%20ObjectId%20%3C%3D%201%20AND%20BundeslandId%20%3E%3D%200%20AND%20BundeslandId%20%3C%3D%201&outFields=*&outSR=4326&f=json")
       return result.data.features
 jobs:
   print:
