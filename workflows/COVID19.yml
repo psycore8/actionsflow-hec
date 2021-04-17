@@ -1,7 +1,7 @@
 on:
   script:
     config:
-      force: true
+      #force: true
       every: "30 6 * * *"
       #skipSchedule: true
       #manualRunEvent:
