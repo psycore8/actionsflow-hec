@@ -1,6 +1,9 @@
 on:
   script:
     config:
+      filter:
+        AdmUnitid:
+          $eq: 0
       #force: true
       #every: "30 6 * * *"
       #skipSchedule: true
