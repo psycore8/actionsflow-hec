@@ -2,7 +2,7 @@ on:
   script:
     config:
       #force: true
-      every: "30 6 * * *"
+      every: "10 6 * * *"
       #skipSchedule: true
       #manualRunEvent:
        # - workflow_dispatch
