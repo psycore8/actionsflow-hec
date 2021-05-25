@@ -4,6 +4,7 @@ on:
     url:
       #- https://rp-online.de/feed.rss
       #- http://www.chip.de/rss/rss_downloads.xml
+      # ttt
       - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
       - https://taz.de/Themen-des-Tages/!p15;rss/
     config:
