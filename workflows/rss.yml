@@ -51,3 +51,13 @@ jobs:
                                  { "type": "plain_text", "text": ":mega: {{ title }}", "emoji": true } },
                                  { "type": "section", "text": { "type": "mrkdwn", "text": "`{{ hostname }}` - <{{ link }}|Click here to open>" } },
                                  { "type": "divider" } ] }'
+  discord:
+    name: Send a message to discord
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notification
+        uses: actionsflow/axios@v1
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_TEST }}
+          method: 'POST'
+          data: ${{ on.rss.outputs.link }}
