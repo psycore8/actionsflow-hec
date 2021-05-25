@@ -54,8 +54,11 @@ jobs:
                                  { "type": "divider" } ] }'
 
       - name: Discord notification
-        uses: actionsflow/axios@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          title: ${{ on.rss.outputs.title }}
+          link: ${{ on.rss.outputs.link }}
+          hostname: ${{ on.rss.outputs.hostname }}
+        uses: Ilshidur/action-discord@master
         with:
-          url: ${{ secrets.DISCORD_WEBHOOK_TEST }}
-          method: 'POST'
-          data: ${{ on.rss.outputs.link }}
+          args: 'NEWS: {{ title }} - {{ link }}'
