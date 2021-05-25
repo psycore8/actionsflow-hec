@@ -52,13 +52,13 @@ jobs:
                                  { "type": "plain_text", "text": ":mega: {{ title }}", "emoji": true } },
                                  { "type": "section", "text": { "type": "mrkdwn", "text": "`{{ hostname }}` - <{{ link }}|Click here to open>" } },
                                  { "type": "divider" } ] }'
-
-      - name: Discord notification
+      - name: Test Success
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TEST }}
           title: ${{ on.rss.outputs.title }}
           link: ${{ on.rss.outputs.link }}
           hostname: ${{ on.rss.outputs.hostname }}
-        uses: Ilshidur/action-discord@0.3.0
+        uses: rjstone/discord-webhook-notify@v1
         with:
-          args: 'NEWS: {{ title }} - {{ link }}'
+          severity: info
+          details: NEWS: {{ title }} - {{ link }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_TEST }}
