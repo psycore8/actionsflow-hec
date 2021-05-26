@@ -34,11 +34,9 @@ jobs:
           echo link: $link
           echo Content: $ct
           echo done
-      - uses: actions/checkout@master
       - name: send custom message with args
-        uses: appleboy/discord-action@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TEST }}
+        uses: Ilshidur/action-discord@master
         with:
-          #test
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           args: ${{ on.rss.outputs.title }} ${{on.rss.outputs.link}}.
