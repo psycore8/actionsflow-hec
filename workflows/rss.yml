@@ -52,13 +52,3 @@ jobs:
                                  { "type": "plain_text", "text": ":mega: {{ title }}", "emoji": true } },
                                  { "type": "section", "text": { "type": "mrkdwn", "text": "`{{ hostname }}` - <{{ link }}|Click here to open>" } },
                                  { "type": "divider" } ] }'
-      - name: Test Success
-        env:
-          title: ${{ on.rss.outputs.title }}
-          link: ${{ on.rss.outputs.link }}
-          hostname: ${{ on.rss.outputs.hostname }}
-        uses: rjstone/discord-webhook-notify@v1
-        with:
-          severity: info
-          details: Ich bin Che
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_TEST }}
