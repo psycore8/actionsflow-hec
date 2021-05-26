@@ -34,7 +34,7 @@ jobs:
           echo link: $link
           echo Content: $ct
           echo done
-              - uses: actions/checkout@master
+      - uses: actions/checkout@master
       - name: send custom message with args
         uses: appleboy/discord-action@master
         with:
