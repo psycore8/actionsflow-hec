@@ -4,7 +4,6 @@ on:
     url:
       #- https://rp-online.de/feed.rss
       #- http://www.chip.de/rss/rss_downloads.xml
-      # tttt
       - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
       - https://taz.de/Themen-des-Tages/!p15;rss/
     config:
@@ -48,5 +47,5 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#48f442"
-          message: 'NEWS: ${{ on.rss.outputs.title }}'
+          #color: "#48f442"
+          message: ':newspaper2: **NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
