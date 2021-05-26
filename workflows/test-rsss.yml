@@ -1,0 +1,43 @@
+on:
+  rss:
+    url:
+      - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
+      - https://taz.de/Themen-des-Tages/!p15;rss/
+    config:
+      #limit: 10
+      filterOutputs:
+        title: 1
+        link: 1
+        content_tier: 1
+      filter:
+        content_tier:
+          $not:
+            locked
+      format: |
+        item.hostname = new URL(item.link).hostname;
+        item.title = item.title.split('"').join("").substring(0, 140);
+        return item;
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          title: ${{on.rss.outputs.title}}
+          link: ${{on.rss.outputs.link}}
+          #debug
+          ct: ${{ on.rss.outputs.content_tier }}
+        run: |
+          echo title: $title
+          #echo contentSnippet: $contentSnippet
+          echo link: $link
+          echo Content: $ct
+          echo done
+              - uses: actions/checkout@master
+      - name: send custom message with args
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          args: ${{ on.rss.outputs.title }} ${{on.rss.outputs.link}}.
