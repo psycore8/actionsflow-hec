@@ -39,4 +39,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TEST }}
         uses: Ilshidur/action-discord@master
         with:
-          args: ${{ on.rss.outputs.title }} ${{on.rss.outputs.link}}.
+          args: '${{ on.rss.outputs.title }} ${{on.rss.outputs.link}}'
