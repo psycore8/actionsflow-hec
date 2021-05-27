@@ -18,17 +18,12 @@ jobs:
           echo outputs: $outputs
       - name: send message
         uses: appleboy/discord-action@master
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_NEWS_BOT }}
-          AnzFallNeu: ${{ on.script.outputs.attributes.AnzFallNeu }}
-          AnzTodesfallNeu: ${{ on.script.outputs.attributes.AnzTodesfallNeu }}
-          Inz7T: ${{ on.script.outputs.attributes.Inz7T }}
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           #color: "#48f442"
           message:
             ":large_blue_circle: **COVID-19 Zahlen** :large_blue_circle:\n
-            Anzahl Neuinfektionen: {{ AnzFallNeu }}\n
-            Anzahl Todesfälle 24h: {{ AnzTodesfallNeu }}\n
-            7 Tage Inzidenz: {{ Inz7T }}\n"
+            Anzahl Neuinfektionen: ${{ on.script.outputs.attributes.AnzFallNeu }}\n
+            Anzahl Todesfälle 24h: ${{ on.script.outputs.attributes.AnzTodesfallNeu }}\n
+            7 Tage Inzidenz: ${{ on.script.outputs.attributes.Inz7T }}\n"
