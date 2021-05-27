@@ -44,9 +44,9 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           #color: "#48f442"
           message: "Wetterinfo:\n
-                   Aktuelle Temperatur liegt bei {{ curtemp }} °C, die Maximaltemperatur wird bei {{ maxtemp }} °C liegen\n
-                   Sonnenaufgang: {{ slacksunrise }}\n
-                   Sonnenuntergang: {{ slacksunset }}\n"
+                   Aktuelle Temperatur liegt bei ${{on.weather.outputs.current.temp}} °C, die Maximaltemperatur wird bei ${{on.weather.outputs.daily[0].temp.day}} °C liegen\n
+                   Sonnenaufgang: ${{steps.collect_data.outputs.conv_sunrise}}\n
+                   Sonnenuntergang: ${{steps.collect_data.outputs.conv_sunset}}\n"
                 
       - name: Discord notification rain
         uses: appleboy/discord-action@master
@@ -54,7 +54,7 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#ff0000"
+          #color: "#ff0000"
           message: ":rain: Du solltest den Regenschirm mitnehmen"
       - name: Discord notification Clouds
         uses: appleboy/discord-action@master
@@ -62,7 +62,7 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#ff0000"
+          #color: "#ff0000"
           message: ":cloud: Grau in grau..."        
       - name: Discord notification Clouds_behind_sun
         uses: appleboy/discord-action@master
@@ -70,6 +70,6 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          color: "#ff0000"
+          #color: "#ff0000"
           message: ":sun_behind_cloud: Ein wenig Sonne ist in Sicht"              
 
