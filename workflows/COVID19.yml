@@ -1,7 +1,7 @@
 on:
   script:
     config:
-      every: "10 6 * * *"
+      #every: "10 6 * * *"
       timeZone: Europe/Berlin
     run: |
       const result = await helpers.axios.get("https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_hubv/FeatureServer/0/query?where=AdmUnitId%20%3E%3D%20-1%20AND%20AdmUnitId%20%3C%3D%200&outFields=*&outSR=4326&f=json")
