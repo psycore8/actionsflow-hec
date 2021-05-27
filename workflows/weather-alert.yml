@@ -43,8 +43,8 @@ jobs:
           alert_desc: ${{steps.collect_data.outputs.conv_alert_active}}
           #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
         with:
-          webhook_id: ${{ secrets.DISCORD.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD.WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           message:
             ":bangbang: ALARM :bangbang:\n
             {{ alert_desc }}\n
