@@ -8,7 +8,7 @@ on:
       lang: de
       units: metric
     config:
-      #every: "30 6 * * 1-5"
+      every: "30 6 * * 1-5"
       timeZone: Europe/Berlin
 
 jobs:
@@ -40,8 +40,8 @@ jobs:
           slacksunrise: "${{steps.collect_data.outputs.conv_sunrise}}"
           slacksunset: "${{steps.collect_data.outputs.conv_sunset}}"
         with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#48f442"
           message: "Wetterinfo:\n
                    Aktuelle Temperatur liegt bei ${{on.weather.outputs.current.temp}} °C, die Maximaltemperatur wird bei ${{on.weather.outputs.daily[0].temp.day}} °C liegen\n
@@ -52,24 +52,24 @@ jobs:
         uses: appleboy/discord-action@master
         if: on.weather.outputs.daily[0].weather[0].main == 'Rain'
         with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#ff0000"
           message: ":rain: Du solltest den Regenschirm mitnehmen"
       - name: Discord notification Clouds
         uses: appleboy/discord-action@master
         if: on.weather.outputs.daily[0].weather[0].description == 'Bedeckt'
         with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#ff0000"
           message: ":cloud: Grau in grau..."        
       - name: Discord notification Clouds_behind_sun
         uses: appleboy/discord-action@master
         if: on.weather.outputs.daily[0].weather[0].description == 'Überwiegend bewölkt'
         with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#ff0000"
           message: ":sun_behind_cloud: Ein wenig Sonne ist in Sicht"              
 
