@@ -23,7 +23,7 @@ jobs:
         env:
           subject: ${{on.email.outputs.subject}}
         with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#48f442"
           message: "Neue Nachricht auf deiner fritz.box {{ subject }} "
