@@ -38,16 +38,14 @@ jobs:
           echo link: $link
           echo Content: $ct
           echo done
-      - name: Slack notification
-        uses: Ilshidur/action-slack@2.1.0
+      - name: send message
+        uses: appleboy/discord-action@master
         env:
           title: ${{ on.rss.outputs.title }}
           link: ${{ on.rss.outputs.link }}
           hostname: ${{ on.rss.outputs.hostname }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_NEWS_BOT }}
-          SLACK_CHANNEL: news
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "{{ title }}", "blocks":
-                                 [ { "type": "header", "text":
-                                 { "type": "plain_text", "text": ":mega: {{ title }}", "emoji": true } },
-                                 { "type": "section", "text": { "type": "mrkdwn", "text": "`{{ hostname }}` - <{{ link }}|Click here to open>" } },
-                                 { "type": "divider" } ] }'
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_NEWS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_NEWS_TOKEN }}
+          #color: "#48f442"
+          message: ':newspaper2: **NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'

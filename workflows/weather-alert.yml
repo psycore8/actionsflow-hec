@@ -33,18 +33,18 @@ jobs:
             echo "::set-output name=conv_alert_start::${conv_alert_start}"
             echo "::set-output name=conv_alert_end::${conv_alert_end}"
           fi
-      - name: Slack Alert
+      - name: Discord Alert
         continue-on-error: true
-        uses: Ilshidur/action-slack@2.1.0
+        uses: appleboy/discord-action@master
         if: ${{ on.weather.outputs.alerts[0].description != '' }}
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEATHER_BOT }}
           alert_start: ${{steps.collect_data.outputs.conv_alert_start}}
           alert_end: ${{steps.collect_data.outputs.conv_alert_end}}
           alert_desc: ${{steps.collect_data.outputs.conv_alert_active}}
-          #SLACK_CUSTOM_PAYLOAD: '{ "text": "Wolken ", "blocks": [ { "type": "header", "text": { "type": "plain_text", "text": ":sun_behind_cloud: Wetterinfo ", "emoji": true } },{ "type": "section", "text": { "type": "mrkdwn", "text": "Ein kleines bisschen Sonne ist in Sicht" } }, { "type": "divider" } ] }'
         with:
-          args:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
+          message:
             ":bangbang: ALARM :bangbang:\n
             {{ alert_desc }}\n
             Gültig von {{ alert_start }} bis {{alert_end }}\n"

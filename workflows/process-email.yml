@@ -18,10 +18,12 @@ jobs:
           echo subject: $subject
           echo text: $text
           echo done
-      - name: Slack notification
-        uses: Ilshidur/action-slack@2.1.0
+      - name: send message
+        uses: appleboy/discord-action@master
         env:
           subject: ${{on.email.outputs.subject}}
-          #body: ${{on.email.outputs.text}}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_NETWORK }}
-          SLACK_CUSTOM_PAYLOAD: '{ "text": "Neue Nachricht auf deiner fritz.box {{ subject }} "}'
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
+          #color: "#48f442"
+          message: "Neue Nachricht auf deiner fritz.box {{ subject }} "
