@@ -55,7 +55,7 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#ff0000"
-          message: ":rain: Du solltest den Regenschirm mitnehmen"
+          message: ":cloud_rain: Du solltest den Regenschirm mitnehmen"
       - name: Discord notification Clouds
         uses: appleboy/discord-action@master
         if: on.weather.outputs.daily[0].weather[0].description == 'Bedeckt'
@@ -71,5 +71,5 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
           #color: "#ff0000"
-          message: ":sun_behind_cloud: Ein wenig Sonne ist in Sicht"              
+          message: ":white_sun_cloud: Ein wenig Sonne ist in Sicht"              
 

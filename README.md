@@ -2,8 +2,10 @@ Automated processes sponsored by "el commandante" Che
 
 This repository is for testing purposes only, use at your own risk :)
 
-Version: 0.8:
+Version 0.9:
 
-NEW: All outputs to slack deactivated and transfered to discord
+FIX: emojies in discord output
 
-DEL: yt.yml no longer active
+FIX: weather alert didn't run properly
+
+CHG: run weather alert every 3 hours
