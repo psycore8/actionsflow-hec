@@ -1,11 +1,33 @@
-Automated processes sponsored by "el commandante" Che
+# Automated processes aka CheBot :rainbow_flag:
 
 This repository is for testing purposes only, use at your own risk :)
 
-Version 0.9:
+## Version 1.0:
 
-FIX: emojies in discord output
+FIX: better visualization for discord news notifications on android
 
-FIX: weather alert didn't run properly
+CHG: weather stats now shown in news channel
 
-CHG: run weather alert every 3 hours
+CHG: weather alertis embedded in red color
+
+## Workflows:
+
+### COVID19
+
+daily COVID19 stats for germany
+
+### PROCESS-EMAIL
+
+telephone - fritz.box - mailbox gateway
+
+### RSS
+
+news feed with customizable sources
+
+### WEATHER-ALERT
+
+checks for weather alert every 3 hours
+
+### WEATHER
+
+daily weather stats
