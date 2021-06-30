@@ -48,4 +48,4 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_NEWS_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_NEWS_TOKEN }}
           #color: "#48f442"
-          message: ':newspaper2: **NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
+          message: '**NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
