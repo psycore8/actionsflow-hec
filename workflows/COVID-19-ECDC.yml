@@ -1,7 +1,7 @@
 on:
   script:
     config:
-      every: "10 6 * * *"
+      #every: "10 6 * * *"
       timeZone: Europe/Berlin
     run: |
       const result = await helpers.axios.get("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/")
