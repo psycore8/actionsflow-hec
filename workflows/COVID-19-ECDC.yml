@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          outputs: ${{ toJson(on.script.outputs) }}
+          outputs: ${{ on.script.outputs }}
         run: |
           echo outputs: $outputs
  #     - name: send message
