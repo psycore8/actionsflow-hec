@@ -21,7 +21,7 @@ jobs:
  #       with:
  #         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
  #         webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
-          #color: "#48f442"
+ #         #color: "#48f442"
  #         message:
  #           "**COVID-19 Zahlen** :black_circle:\n
  #           Anzahl Neuinfektionen: ${{ on.script.outputs.attributes.AnzFallNeu }}\n
