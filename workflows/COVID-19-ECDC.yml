@@ -5,7 +5,7 @@ on:
       timeZone: Europe/Berlin
     run: |
       const result = await helpers.axios.get("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/")
-      return result.data.records[396]
+      return result.data.records[582]
 jobs:
   print:
     name: Print
