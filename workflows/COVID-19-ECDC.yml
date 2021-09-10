@@ -5,7 +5,7 @@ on:
       timeZone: Europe/Berlin
     run: |
       const result = await helpers.axios.get("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/")
-      return result.data.records[582]
+      return result.data.records
 jobs:
   print:
     name: Print
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Print Outputs
         env:
-          outputs: ${{ toJson(on.script.outputs) }}
+          outputs: ${{ toJson(on.script.outputs[582]) }}
         run: |
           echo outputs: $outputs
  #     - name: send message
