@@ -4,7 +4,7 @@ This repository is for testing purposes only, use at your own risk :)
 
 ## Version 1.1:
 
-FIX: fied a misspelling
+FIX: fixed a misspelling
 
 ## Workflows:
 
