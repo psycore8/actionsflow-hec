@@ -2,13 +2,9 @@
 
 This repository is for testing purposes only, use at your own risk :)
 
-## Version 1.0:
+## Version 1.1:
 
-FIX: better visualization for discord news notifications on android
-
-CHG: weather stats now shown in news channel
-
-CHG: weather alertis embedded in red color
+FIX: fied a misspelling
 
 ## Workflows:
 
