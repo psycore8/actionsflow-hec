@@ -1,0 +1,36 @@
+on:
+  rss:
+    url:
+      - https://vuldb.com/?rss.recent
+    config:
+      #limit: 10
+      filterOutputs:
+        title: 1
+        link: 1
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          title: ${{on.rss.outputs.title}}
+          #contentSnippet: ${{on.rss.outputs.contentSnippet}}
+          link: ${{on.rss.outputs.link}}
+          #debug
+        run: |
+          echo title: $title
+          #echo contentSnippet: $contentSnippet
+          echo link: $link
+          echo done
+#      - name: send message
+#        uses: appleboy/discord-action@master
+#        env:
+#          title: ${{ on.rss.outputs.title }}
+#          link: ${{ on.rss.outputs.link }}
+#          hostname: ${{ on.rss.outputs.hostname }}
+#        with:
+#          webhook_id: ${{ secrets.DISCORD_WEBHOOK_NEWS_ID }}
+#          webhook_token: ${{ secrets.DISCORD_WEBHOOK_NEWS_TOKEN }}
+          #color: "#48f442"
+#          message: '**NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
