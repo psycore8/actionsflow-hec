@@ -24,6 +24,10 @@ telephone - fritz.box - mailbox gateway
 
 news feed with customizable sources
 
+### VULDB
+
+check latest zero day exploits for your security management
+
 ### WEATHER-ALERT
 
 checks for weather alert every 3 hours
