@@ -1,7 +1,7 @@
 on:
   rss:
     url:
-      - https://vuldb.com/?rss.recent
+      #- https://vuldb.com/?rss.recent
     config:
       #limit: 10
       filterOutputs:
