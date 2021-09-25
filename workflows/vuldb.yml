@@ -31,4 +31,4 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_0DAY_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_0DAY_TOKEN }}
           color: "#48f442"
-          message: '**NEWS:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
+          message: '**SECURITY:** ${{ on.rss.outputs.title }} - ${{ on.rss.outputs.link }}'
