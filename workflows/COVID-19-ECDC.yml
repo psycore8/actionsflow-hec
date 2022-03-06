@@ -15,6 +15,7 @@ jobs:
         env:
           outputs: ${{ toJson(on.script.outputs[582]) }}
         run: |
+          echo Message
           echo outputs: $outputs
  #     - name: send message
  #       uses: appleboy/discord-action@master
