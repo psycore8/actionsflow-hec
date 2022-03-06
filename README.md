@@ -1,4 +1,4 @@
-# Automated processes aka CheBot :rainbow_flag:
+# Automated processes aka CheBot :rainbow_flag: :ukraine:
 
 This repository is for testing purposes only, use at your own risk :)
 
