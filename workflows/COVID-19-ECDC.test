@@ -1,0 +1,30 @@
+on:
+  script:
+    config:
+      #every: "10 6 * * *"
+      timeZone: Europe/Berlin
+    run: |
+      const result = await helpers.axios.get("https://opendata.ecdc.europa.eu/covid19/nationalcasedeath_eueea_daily_ei/json/")
+      return result.data.records
+jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          outputs: ${{ toJson(on.script.outputs[582]) }}
+        run: |
+          echo Message
+          echo outputs: $outputs
+ #     - name: send message
+ #       uses: appleboy/discord-action@master
+ #       with:
+ #         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ALERTS_ID }}
+ #         webhook_token: ${{ secrets.DISCORD_WEBHOOK_ALERTS_TOKEN }}
+ #         #color: "#48f442"
+ #         message:
+ #           "**COVID-19 Zahlen** :black_circle:\n
+ #           Anzahl Neuinfektionen: ${{ on.script.outputs.attributes.AnzFallNeu }}\n
+ #           Anzahl Todesfälle 24h: ${{ on.script.outputs.attributes.AnzTodesfallNeu }}\n
+ #           7 Tage Inzidenz: ${{ on.script.outputs.attributes.Inz7T }}\n"
