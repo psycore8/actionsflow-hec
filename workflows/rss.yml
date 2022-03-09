@@ -12,11 +12,11 @@ on:
       filterOutputs:
         title: 1
         link: 1
-        content_tier: 1
-      filter:
-        content_tier:
-          $not:
-            locked
+        #content_tier: 1
+      #filter:
+        #content_tier:
+          #$not:
+            #locked
       format: |
         item.hostname = new URL(item.link).hostname;
         item.title = item.title.split('"').join("").substring(0, 140);
