@@ -7,6 +7,7 @@ on:
       #- https://logrhythm.com/feed/
       - https://www.spiegel.de/schlagzeilen/eilmeldungen/index.rss
       - https://taz.de/Themen-des-Tages/!p15;rss/
+      - https://taz.de/Artikel-mit-themen-des-tages/!s=themen%2Bdes%2Btages;rss/
     config:
       #limit: 10
       filterOutputs:
