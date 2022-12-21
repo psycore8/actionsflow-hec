@@ -2,8 +2,9 @@ on:
   rss:
     url:
       #- https://vuldb.com/?rss.recent
+      - https://www.exploit-db.com/rss.xml
     config:
-      #limit: 10
+      limit: 10
       filterOutputs:
         title: 1
         link: 1
@@ -25,6 +26,7 @@ jobs:
         uses: appleboy/discord-action@master
         env:
           title: ${{ on.rss.outputs.title }}
+          desc: ${{ on.rss.outputs.description }}
           link: ${{ on.rss.outputs.link }}
           #hostname: ${{ on.rss.outputs.hostname }}
         with:
