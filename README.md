@@ -2,7 +2,7 @@
 
 This repository is for testing purposes only, use at your own risk :)
 
-## Version 1.1:
+## Version 1.2:
 
 FIX: fixed a misspelling
 
@@ -20,9 +20,9 @@ telephone - fritz.box - mailbox gateway
 
 news feed with customizable sources
 
-### VULDB
+### EXPLOIT-DB
 
-check latest zero day exploits for your security management
+check latest exploits
 
 ### WEATHER-ALERT
 
